@@ -1,14 +1,3 @@
-Aditya Kumar
-16+ exp
-
-weekday batch
--------------------
-monday
-tuesday
-wednesday
-friday
-
-
 Python:
 ----------
 >It was first released in 1991 by Guido van rossum at CWI in Netherlands.
