@@ -1,4 +1,6 @@
-marks=float(input('Enter marks='))
+#if-elif(conditional statements)
+
+marks=float(input('(for division checkup)Enter marks='))
 if marks>=40 and marks<=49:
     print('3rd division')
 elif marks>=50 and mrks<=59:

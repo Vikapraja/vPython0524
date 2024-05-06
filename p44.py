@@ -1,6 +1,3 @@
-#wap to check no is even/odd
-
-
 #Nested condition
         #it is a condition which is define inside other condition
 
