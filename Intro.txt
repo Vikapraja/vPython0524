@@ -1,0 +1,57 @@
+Aditya Kumar
+16+ exp
+
+weekday batch
+-------------------
+monday
+tuesday
+wednesday
+friday
+
+
+Python:
+----------
+>It was first released in 1991 by Guido van rossum at CWI in Netherlands.
+>CWI-->Centrum Wishkunde & Informetica (a research org in the field of maths & network)
+>It was named python after a comedy show Monty Python's Flying Circus
+>It is a high level,general purpose,open source,interpreted programming language
+
+High Level---->human readable code
+Low Level----->cpu readable code
+
+Interpreter--->is a translator that translates high level code to low level.
+
+General Purpose
+---------------------
+>Python is not specific to a field and it can be used in
+	>AI
+	>Analytics
+	>Scientific App
+	>IOT
+	>testing
+	>web development
+	etc.
+ 
+Open Source:
+-----------------
+>it is freely available to use for learning as well as commericial usage.
+>we can download python from official website of Python Software Foundation(PSF)
+	www.python.org
+
+Python Implementations(Interepreters):
+---------------------------------------------------
+>Cpython---------->in C language  	 from www.python.org
+>Jython------------>in java language	 from www.jython.org
+>IronPython------>in .net		 from www.ironpython.net	
+>Pypy-------------->in python language	 from www.pypy.org
+etc.
+
+Python Coding:
+-------------------
+>Interactive Mode:statement is executed when you hit enter key,code is not saved anywhere
+	>cmd
+	>idle
+>Script Mode:first we write all stmts then save them into a file then run this file 
+	>notepad
+	>idle
+	
