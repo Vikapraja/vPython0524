@@ -18,3 +18,9 @@ Core Python
 8)Conditional_Statements(p36-p43)
 
 9)While_loop(p44-p52)
+
+10)for loop(p53-p58)
+
+11)String operations/methods-1(p59-p61)
+
+12)String operations/method-2
