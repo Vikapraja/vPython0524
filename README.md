@@ -23,4 +23,6 @@ Core Python
 
 11)String operations/methods-1(p59-p61)
 
-12)String operations/method-2
+12)String operations/method-2(p62-p70)
+
+13)
