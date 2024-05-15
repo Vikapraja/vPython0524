@@ -1,9 +1,9 @@
 #Tuple
     #it is unmodifialbe/immutable
     #other concept are same as list.
-    #syntax:
-        #var=()
-        #var=(value1,value2,.....)
+        #syntax:
+            #var=()
+            #var=(value1,value2,.....)
 
 #creating empty tuple
 t=()
