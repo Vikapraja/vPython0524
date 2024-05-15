@@ -1,44 +1,22 @@
-#Tuple
-    #it is unmodifialbe/immutable
-    #other concept are same as list.
-    #syntax:
-        #var=()
-        #var=(value1,value2,.....)
+#Wap to get unique value from list
+li=[10,20,10,30,20,34]
+y=[]
+for i in li:
+    if i not in y:
+        y.append(i)
+print(li)
+print(y)
 
-#creating empty tuple
-t=()
-print(type(t),t)
+#list comprehension(creating a list with single stmt by for loop)
+li=[x*x for x in range(1,5)]
+print(li)
 
-#creating tuple with value
-t=(10,20,30,10)
-print(t)
+s=[1+x for x in range(1,10)]
+print(s)
 
-#creating tuple with single value
-t=(10)
-print(type(t))
-t=(10,)
-print(type(t),t)
-
-#creating tuple with str
-t=tuple('ducat')
-print(t)
-
-#creating tuple with range
-t=tuple(range(1,11))
-print(t)
-
-#creating tuple with list
-t=tuple([10,20,30,40])
-print(t)
-
-#t[0]=100  #error:unmodifiable
-#t.pop
-
-
-
-
-
-
+#to do empty to list(.clear())
+s.clear()
+print(s)
 
 
 
