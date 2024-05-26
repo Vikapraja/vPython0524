@@ -25,4 +25,4 @@ Core Python
 
 12)String operations/method-2(p62-p70)
 
-13)
+13)Tuple/set(p71-p74)
