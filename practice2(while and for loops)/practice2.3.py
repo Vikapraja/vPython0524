@@ -3,7 +3,7 @@
 a=1
 b=0
 while a<=100:
-    b=b+a
+    b+=a#b=b+a
     if a==100:
         print(b)
     a+=1
@@ -11,6 +11,6 @@ while a<=100:
 #or
 c=0
 for i in range(1,101):
-    c=c+i
+    c+=i#c=c+a
     if i==100:
         print(c)
