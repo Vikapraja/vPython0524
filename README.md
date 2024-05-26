@@ -23,6 +23,22 @@ Core Python
 
 11)String operations/methods-1(p59-p61)
 
-12)String operations/method-2(p62-p70)
+12)String operations/method-2/list(p62-p70)
 
 13)Tuple/set(p71-p74)
+
+14)Dict (p75-p79,Practice-Questions-1,2,3,4,5,6,7.docs)
+
+15)Function_1(p80-p85)
+
+16)Function_2(p86-p90)
+
+17)Module(p91-p94,area.py,calculator.py)
+
+18)Library Module(p95-p98)
+
+18)Library Module_2(p99-p106,(wikipedia,pillow,qrcode))
+
+19)Gmail,youtube,File I/O(p107-p115)
+
+20)
