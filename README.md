@@ -41,4 +41,4 @@ Core Python
 
 19)Gmail,youtube,File I/O(p107-p115)
 
-20)
+20)Regex (re [standard library]) (p116-p117,data,data_gmail)
