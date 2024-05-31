@@ -11,8 +11,6 @@
     #'w' mode create file if not found
 
 #mode 'a'--->write()
-    #It create file if not found
-
 
 #file=cwd(from current working dir)
 file=open("msg.txt","r")#filePath,mode
