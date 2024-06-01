@@ -44,3 +44,5 @@ Core Python
 20)Regex (re [standard library]) (p116-p118,data,data_gmail,data_phone)
 
 21)Exception Handling Errors (p119-p124,screenshot[1].png, screenshot[2].png)
+
+22)OOPS concepts (p125-p127,OPPS1.png)
