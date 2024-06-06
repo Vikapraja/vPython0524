@@ -45,4 +45,14 @@ Core Python
 
 21)Exception Handling Errors (p119-p124,screenshot[1].png, screenshot[2].png)
 
-22)OOPS concepts (p125-p127,OPPS1.png)
+22)OOPS concepts-1(p125-p127,OPPS1.png)
+
+23)OOps concepts-2(p128-p132,oops_2.1.png,oops_2.2.png)
+
+24)OOPS concepts-3(p133-p139,oops_3.1.png,oops3.2.png)
+
+25)OOPS concepts-4(p140-p143,oops_4.1.png,oops_4.2.,13.oops.docs)
+
+26)Tkinter_1(p144-152,tkinter_1.1.png,tkinter_1.2.png)
+
+27)
