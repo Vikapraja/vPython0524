@@ -1,4 +1,4 @@
-#
+#3. Write a Python program to remove the characters which have odd index values of a given string
 
 s=str(input('enter a str='))
 print(len(s))
