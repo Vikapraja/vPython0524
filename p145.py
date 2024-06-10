@@ -6,6 +6,5 @@ win.configure(bg="yellow")              #set bgcolor of window
 
 b1=Button(win,text="Submit")
 
-#absolute pla
-ce
+#absolute place
 win.mainloop()                          #Make the window visible
