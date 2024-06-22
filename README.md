@@ -1,5 +1,5 @@
 # Python Full Stack
-Core Python
+[A]Core Python
 -------------
 1)Introduction(Intro.txt ,Python_History.txt, Installer_components.txt, Setup_components.png)
 
@@ -58,3 +58,7 @@ Core Python
 27)tkinter_2,Multithreading(p153-p159,)
 
 28)tkinter_lastpython(radiobutton.py,combobox.py)
+
+------------------------------------------------------------------------
+# [B] SQL
+repo= vSQL_0624
