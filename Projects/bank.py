@@ -3,6 +3,16 @@ import time
 from tkcalendar import Calendar
 from tkinter.ttk import Combobox
 from tkinter import messagebox
+import sqlite3
+
+try:
+    con=sqlite3.connect('vbank.sqlite')
+    cur=con.cursor()
+    cur.execute("create table acn(acn_no integer primary key autoincrement,acn_adhar int,acn_name text,acn_age int,acn_gender text,acn_phone int,acn_email text,acn_opendate date,acn_pass text,acn_bal float)")
+    cur.close()
+    print('table created')
+except:
+    print('something went wrong may be table already exists !')
 
 
 win=Tk()
@@ -92,6 +102,16 @@ def main_screen():
     btn_newu.place(relx=.42,rely=.5)
     
 def forgotpass_screen():
+
+    def pass_db():
+        acn_no=e_acn.get()
+        acn_email=e_email.get()
+        con=sqlite3.connect('vbank.sqlite')
+        cur=con.cursor()
+        cur.execute('select acn_pass from acn where acn_no=? and acn_email=?',(acn_no,acn_email))
+        tup=cur.fetchall()
+        messagebox.showinfo('Password founded',f'password={tup[0]}')
+
     frm=Frame(win,bg='powder blue')
     frm.place(relx=0,rely=.14,relwidth=1,relheight=.95)
 
@@ -120,12 +140,45 @@ def forgotpass_screen():
     e_phone=Entry(frm,font=('arial',15),bd=5)
     e_phone.place(relx=.4,rely=.3)
     
-    btn_submit=Button(frm,text='Submit',font=('arial',15,'bold'),width=10,bd=5)
+    btn_submit=Button(frm,text='Submit',font=('arial',15,'bold'),width=10,bd=5,command=pass_db)
     btn_submit.place(relx=.4,rely=.4)
 
 def newuser_screen():
     frm=Frame(win,bg='powder blue')
     frm.place(relx=0,rely=.14,relwidth=1,relheight=.95)
+
+    def new_db():
+        acn_adhar=e_adhar.get()
+        acn_opendate=time.strftime('%d %B,%Y')
+        acn_name=e_name.get()
+        acn_age=e_age.get()
+        acn_gender=cb_gender.get()
+        acn_phone=e_phone.get()
+        acn_email=e_email.get()
+        acn_pass=e_confirmpass.get()
+        acn_bal=0
+        con=sqlite3.connect('vbank.sqlite')
+        cur=con.cursor()
+        cur.execute('insert into acn(acn_adhar,acn_name,acn_age,acn_gender,acn_phone,acn_email,acn_opendate,acn_pass,acn_bal) values(?,?,?,?,?,?,?,?,?)',(acn_adhar,acn_name,acn_age,acn_gender,acn_phone,acn_email,acn_opendate,acn_pass,acn_bal))
+        con.commit()
+        #con.close()
+        print('inserted'+acn_adhar,acn_opendate)
+        con=sqlite3.connect('vbank.sqlite')
+        cur.execute('select acn_no from acn where acn_phone=? and acn_email=?',(acn_phone,acn_email))
+        tup=cur.fetchone()
+        messagebox.showinfo('account Created \n ',message=f'User Account No. is{tup[0]} and password={acn_pass}')
+        cur.close()
+        
+        e_adhar.delete(0,'end')
+        e_name.delete(0,'end')
+        e_age.delete(0,'end')
+        cb_gender.delete(0,'end')
+        e_phone.delete(0,'end')
+        e_email.delete(0,'end')
+        e_confirmpass.delete(0,'end')
+
+        
+        newuser_screen()
 
     lbl_head=Label(frm,text='Create New User Page',font=('arial',20,'bold'),fg='green')
     lbl_head.pack()
@@ -136,28 +189,21 @@ def newuser_screen():
     lbl_adhar=Label(frm,text='Adhar No',font=('arial',15,'bold'),bg='powder blue')
     lbl_adhar.place(relx=.3,rely=.1)
     
-    e_acn=Entry(frm,font=('arial',15),bd=5)
-    e_acn.place(relx=.4,rely=.1)
-    e_acn.focus()
+    e_adhar=Entry(frm,font=('arial',15),bd=5)
+    e_adhar.place(relx=.4,rely=.1)
+    e_adhar.focus()
 
-    lbl_dob=Label(frm,text='Select D.O.B.',font=('arial',15,'bold'),bg='powder blue')
-    lbl_dob.place(relx=.3,rely=.2)
+    lbl_name=Label(frm,text='Name:',font=('arial',15,'bold'),bg='powder blue')
+    lbl_name.place(relx=.3,rely=.2)
 
-    def dob():
-        cal=Calendar(frm,selectedmode='day',year=2020,month=5,day=22)
-        cal.place(relx=.7,rely=.2)
-        date.config(text="selected date is : "+ cal.get_date())
-        a=cal.get_date()
-        def ok():
-            lbl_getdob=Label(frm,text=f'Selected date is :{a}',width=20,font=('arial',15,'bold'))
-            lbl_getdob.place(relx=.4,rely=.2)
-            
-        btn_ok=Button(frm,text='Ok',font=('arial',10,'bold'),command=ok)
-        btn_ok.place(relx=.8,rely=.5)
+    e_name=Entry(frm,font=('arial',15),bd=5)
+    e_name.place(relx=.4,rely=.2)
 
-    btn_dob=Button(frm,text="Get DOB Date",font=('arial',15,'bold'),command=dob)
-    date=Label(frm,text='cal.get_date')
-    btn_dob.place(relx=.6,rely=.2)
+    lbl_age=Label(frm,text="Age:",bg='powder blue',font=('arial',15,'bold'))
+    lbl_age.place(relx=.6,rely=.2)
+
+    e_age=Entry(frm,font=('arial',15),bd=5)
+    e_age.place(relx=.7,rely=.2)
 
     lbl_gender=Label(frm,text='Gender:',font=('arial',15,'bold'),bg='powder blue')
     lbl_gender.place(relx=.3,rely=.3)
@@ -189,7 +235,7 @@ def newuser_screen():
     e_confirmpass=Entry(frm,font=('arial',15),bd=5)
     e_confirmpass.place(relx=.4,rely=.7)
     
-    btn_submit=Button(frm,text='Submit',font=('arial',15,'bold'),width=10,bd=5)
+    btn_submit=Button(frm,text='Submit',font=('arial',15,'bold'),width=10,bd=5,command=new_db)
     btn_submit.place(relx=.4,rely=.8)
 
 main_screen()
