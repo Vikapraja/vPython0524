@@ -29,29 +29,43 @@ dt=time.strftime('%d %B,%Y')
 date=Label(win,text=dt,font=('arial',15),fg='blue',bg='orange')
 date.place(relx=.90,rely=.1)
 
+#welcome
+def welcome_screen(tup):
+    acn_no=tup
+    def logout():
+        frm.destroy()
+        main_screen()
+
+    def udetail():
+        con=sqlite3.connect('vbank.sqlite')
+        cur=con.cursor()
+        cur.execute('select * from acn where acn=?',(acn_no))
+        tup=cur.fetchall()
+        con.close()
+
+        #lbl_user=Label(frm,text=f'{tup[0]}',font=('arial',20,'bold'),fg='green')
+        #lbl_user.place(relx=.2,rely=.2)
+        
+    frm=Frame(win,bg='powder blue')
+    frm.place(relx=0,rely=.14,relwidth=1,relheight=.95)    
+
+    lbl_head=Label(frm,text='Welcome user',font=('arial',20,'bold'),fg='green')
+    lbl_head.pack()
+    
+    btn_logout=Button(frm,text='Logout',font=('arial',15,'bold'),width=10,bd=5,command=logout)
+    btn_logout.place(relx=.89,rely=.01)
+    
+    btn_back=Button(frm,text='Back',font=('arial',15,'bold'),width=10,bd=5,command=main_screen)
+    btn_back.place(relx=.01,rely=.01)
+
+    btn_detail=Button(frm,text='User Details',font=('arial',15,'bold'),width=10,bd=5,command=udetail)
+    btn_detail.place(relx=.1,rely=.1)
+
 #main_window
 
 def main_screen():
     frm=Frame(win,bg='powder blue')
     frm.place(relx=0,rely=.14,relwidth=1,relheight=.95)
-
-    def welcome_screen():
-
-        def logout():
-            frm.destroy()
-            main_screen()
-        
-        frm=Frame(win,bg='powder blue')
-        frm.place(relx=0,rely=.14,relwidth=1,relheight=.95)    
-
-        lbl_head=Label(frm,text='Welcome user',font=('arial',20,'bold'),fg='green')
-        lbl_head.pack()
-    
-        btn_logout=Button(frm,text='Logout',font=('arial',15,'bold'),width=10,bd=5,command=logout)
-        btn_logout.place(relx=.89,rely=.01)
-    
-        btn_back=Button(frm,text='Back',font=('arial',15,'bold'),width=10,bd=5,command=main_screen)
-        btn_back.place(relx=.01,rely=.01)
 
     def clear():
         frm.destroy()
@@ -68,10 +82,43 @@ def main_screen():
             messagebox.showwarning('Validation','Without Account No and Password you can not login !')
             return
         
-        elif len(a)!=0 and len(b)!=0:
-            welcome_screen()
-            return
-             
+        else:
+            con=sqlite3.connect('vbank.sqlite')
+            cur=con.cursor()
+            cur.execute('select * from acn where acn_no=? and acn_pass=?',(a,b))
+            tup=cur.fetchone()
+            con.close()
+            if tup==None:
+                messagebox.showerror('failed','Invailid Accout or password')
+                e_acn.delete(0,'end')
+                e_pass.delete(0,'end')
+            else:
+                print(tup[0])
+                tup=tup[0]
+                welcome_screen(tup)
+
+    def allu_screen():
+        frm=Frame(win,bg='powder blue')
+        frm.place(relx=0,rely=.14,relwidth=1,relheight=.95)
+
+        lbl_alluh=Label(frm,text='All User List',font=('arial',15,'bold',))
+        lbl_alluh.pack()
+
+        btn_back=Button(frm,text='Back',font=('arial',15,'bold'),width=10,bd=5,command=main_screen)
+        btn_back.place(relx=.01,rely=.01)
+
+        con=sqlite3.connect('vbank.sqlite')
+        cur=con.cursor()
+        cur.execute('select acn_name from acn')
+        tup=cur.fetchall()
+        con.close()
+
+        a=0
+        for i in range(len(tup)):
+            print(a,tup[a][0])
+            lbl_allu=Label(frm,text=f'{a}-\t{tup[a][0]}',font=('arial',14,'bold',))
+            lbl_allu.place(relx=.2,rely=.2+(a/21))
+            a+=1  
 
     lbl_head=Label(frm,text='Login Page',font=('arial',20,'bold'),fg='green')
     lbl_head.pack()
@@ -100,6 +147,9 @@ def main_screen():
 
     btn_newu=Button(frm,text="Create New User",font=('arial',15,'bold'),bd=5,command=newuser_screen)
     btn_newu.place(relx=.42,rely=.5)
+
+    btn_allu=Button(frm,text="All User",font=('arial',15,'bold'),bd=5,command=allu_screen)
+    btn_allu.place(relx=.42,rely=.6)
     
 def forgotpass_screen():
 
@@ -110,7 +160,7 @@ def forgotpass_screen():
         cur=con.cursor()
         cur.execute('select acn_pass from acn where acn_no=? and acn_email=?',(acn_no,acn_email))
         tup=cur.fetchall()
-        messagebox.showinfo('Password founded',f'password={tup[0]}')
+        messagebox.showinfo('Password founded',f'password={tup[0][0]}')
 
     frm=Frame(win,bg='powder blue')
     frm.place(relx=0,rely=.14,relwidth=1,relheight=.95)
@@ -167,7 +217,7 @@ def newuser_screen():
         cur.execute('select acn_no from acn where acn_phone=? and acn_email=?',(acn_phone,acn_email))
         tup=cur.fetchone()
         messagebox.showinfo('account Created \n ',message=f'User Account No. is{tup[0]} and password={acn_pass}')
-        cur.close()
+        con.close()
         
         e_adhar.delete(0,'end')
         e_name.delete(0,'end')
