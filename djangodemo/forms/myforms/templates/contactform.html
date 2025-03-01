@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form</title>
+</head>
+
+<body>
+    <h1 style="text-align: center;">Contact Form</h1>
+    <div>
+        <form method="post">
+            <table border="2" align="center" width="450px" height="550px" rules="none">
+                <tr>
+                    <th colspan="2">Contact Form</th>
+                </tr>
+                <tr>
+                    <td>Name :</td>
+                    <td>{{form.full_name}}</td>
+                </tr>
+                <tr>
+                    <td>Email :</td>
+                    <td>{{form.email}}</td>
+                </tr>
+                <tr>
+                    <td>Phone :</td>
+                    <td>{{form.phone}}</td>
+                </tr>
+                <tr>
+                    <td>Message :</td>
+                    <td>{{form.message}}</td>
+                </tr>
+                <tfoot>
+                    <th colspan="2"><button type="submit">Send</button></th>
+                </tfoot>
+            </table>
+        </form>
+    </div>
+</body>
+
+</html>

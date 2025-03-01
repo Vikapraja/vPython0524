@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration</title>
+</head>
+<body>
+    <h1 style="text-align: center;">New User Registration</h1>
+    <hr>
+    <a href="{% url 'index' %}"><button>Back</button></a>
+    <ul class="messages">
+        {% if messages %}
+        {% for message in messages %}
+        <li>
+            <div class="alert alert-success">{{ message }}</div>
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <div class="container" style="text-align: center; margin-inline-start: 30%; width: 500px; height: 350px; border: 2px solid red ;">
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="col-md-5">
+                {{ form.as_p }}
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,548 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD APP</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            justify-content: center;
+            align-items: center;
+            
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin: 0 10px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ff5733;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger div {
+            width: 50px;
+            height: 10px;
+            font-size: large;
+            background-color: white;
+            margin: 3px 0;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                background-color: #333;
+                border-radius: 5px;
+                overflow: hidden;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+        }
+
+        .footer {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .footer .footer-section {
+            margin: 10px 0;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer .footer-section h3 {
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .footer .footer-section p,
+        .footer .footer-section a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .footer .footer-section a:hover {
+            color: #ff5733;
+        }
+
+        .footer .social-icons {
+            display: flex;
+            margin-top: 10px;
+        }
+
+        .footer .social-icons a {
+            margin-right: 10px;
+            display: inline-block;
+            color: white;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .footer .social-icons a:hover {
+            color: #ff5733;
+        }
+
+        .footer .copyright {
+            text-align: center;
+            width: 100%;
+            margin-top: 20px;
+            font-size: 0.8rem;
+            color: #bbb;
+        }
+
+        @media (max-width: 768px) {
+            .footer {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer .footer-section {
+                margin: 20px 0;
+            }
+
+            .footer .social-icons {
+                justify-content: center;
+            }
+        }
+
+
+        .contact-form {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            align-content: center;
+            margin-left: 25%;
+        }
+
+        .contact-form h2 {
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            color: #333;
+        }
+
+        .contact-form .form-group {
+            margin-bottom: 15px;
+        }
+
+        .contact-form label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .contact-form input,
+        .contact-form textarea,
+        .contact-form button {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .contact-form textarea {
+            resize: none;
+            height: 100px;
+        }
+
+        .contact-form button {
+            background-color: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .contact-form button:hover {
+            background-color: #ff5733;
+        }
+
+        @media (max-width: 768px) {
+            .contact-form {
+                padding: 15px;
+            }
+
+            .contact-form h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+        .cer{
+            margin-left: 25%;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .about-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-content {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-content h1 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .about-content p {
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        .about-content a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .about-content a:hover {
+            background-color: #ff5733;
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+
+        .about-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .about-content h1 {
+                font-size: 1.5rem;
+            }
+
+            .about-content p {
+                font-size: 0.9rem;
+            }
+
+            .about-image {
+                margin-top: 20px;
+            }
+        }
+
+        .mapouter {
+            position: relative;
+            text-align: right;
+            width: 600px;
+            height: 400px;
+        }
+
+        .gmap_canvas {
+            overflow: hidden;
+            background: none !important;
+            width: 600px;
+            height: 400px;
+        }
+
+        .gmap_iframe {
+            width: 600px !important;
+            height: 400px !important;
+        }
+
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            color: #333;
+        }
+
+        .services {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .service-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 350px;
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .service-card h2 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .service-card p {
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        .service-card iframe {
+            width: 100%;
+            height: 200px;
+            border: none;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .service-card h2 {
+                font-size: 1.3rem;
+            }
+
+            .service-card p {
+                font-size: 0.9rem;
+            }
+        }
+
+
+        .carousel {
+            position: relative;
+            width: 80%;
+            max-width: 800px;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.4s ease-in-out;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            display: block;
+        }
+
+        .carousel-controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+
+        .carousel-controls button {
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .carousel-controls button:hover {
+            background: #ff5733;
+        }
+
+        @media (max-width: 768px) {
+            .carousel {
+                width: 95%;
+            }
+
+            .carousel-controls button {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+
+</head>
+<body>
+    {% load static %}
+    <header class="header">
+        <div class="logo">
+            <img src="{% static 'images/v.jpg' %}" style="border-radius: 50%;" >
+            CRUD APP
+        </div>
+        <ul class="nav-links">
+            <li><a href="{% url 'home' %}" class="mx-5 mt-4 text-light text-decoration-none ">Home</a></li>
+            <li><a href="{% url 'register' %}" class="mx-5 mt-4 text-light text-decoration-none">UserRegister</a></li>
+            <li><a href="{% url 'welcome' %}" class="mx-5 mt-4 text-light text-decoration-none">Login</a></li>
+            <li><a href="{% url 'about' %}" class="mx-5 mt-4 text-light text-decoration-none">About</a></li>
+            <li><a href="{% url 'contactus' %}" class="mx-5 mt-4 text-light text-decoration-none">ContactUs</a></li>
+        </ul>
+        <div class="hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </header>
+
+    {% block nav %}
+
+    {% endblock %}
+
+    <footer class="footer">
+        <div class="footer-section">
+            <h3>About Us</h3>
+            <p>We provide high-quality solutions to meet your business needs. Contact us to learn more!</p>
+        </div>
+        <div class="footer-section">
+            <h3>Quick Links</h3>
+            <p><a href="{% url 'home' %}" class="mx-5 mt-4 text-light text-decoration-none ">Home</a></p>
+            <p><a href="{% url 'welcome' %}" class="mx-5 mt-4 text-light text-decoration-none">Login</a></p>
+            <p><a href="{% url 'about' %}">About Us</a></p>
+            <p><a href="{% url 'contactus' %}">Contact</a></p>
+        </div>
+        <div class="footer-section">
+            <h3>Follow Us</h3>
+            <div class="social-icons">
+                <a href="#" aria-label="Facebook">🔗</a>
+                <a href="#" aria-label="Twitter">🔗</a>
+                <a href="#" aria-label="Instagram">🔗</a>
+                <a href="#" aria-label="LinkedIn">🔗</a>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2025 Your Company. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+    </script>
+
+
+<script>
+    const track = document.querySelector('.carousel-track');
+    const slides = Array.from(track.children);
+    const nextButton = document.getElementById('next');
+    const prevButton = document.getElementById('prev');
+
+    let currentIndex = 0;
+
+    function updateCarousel(index) {
+        track.style.transform = `translateX(-${index * 100}%)`;
+    }
+
+    nextButton.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % slides.length;
+        updateCarousel(currentIndex);
+    });
+
+    prevButton.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        updateCarousel(currentIndex);
+    });
+
+    // Auto-slide every 5 seconds
+    setInterval(() => {
+        currentIndex = (currentIndex + 1) % slides.length;
+        updateCarousel(currentIndex);
+    }, 5000);
+</script>
+
+</body>
+</html>

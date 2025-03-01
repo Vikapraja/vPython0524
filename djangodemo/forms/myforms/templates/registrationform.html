@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+</head>
+
+<body>
+    <h1 style="text-align: center;" class="text-primery">Registration Form</h1>
+    <div>
+        <form method="post">
+            <table border="1" align="center" width="700px" height="550px" rules="none">
+                <tr>
+                    <th colspan="2" class="p-5">Registration Form <hr></th>
+                </tr>
+                <tr>
+                    <td>Date :</td>
+                    <td>{{form.day}}</td>
+                </tr>
+                <tr>
+                    <td>Full Name :</td>
+                    <td>{{form.full_name}}</td>
+                </tr>
+                <tr>
+                    <td>Email :</td>
+                    <td>{{form.email}}</td>
+                </tr>
+                <tr>
+                    <td>Phone :</td>
+                    <td>{{form.phone}}</td>
+                </tr>
+                <tr>
+                    <td>D.O.B </td>
+                    <td>{{form.dob}}</td>
+                </tr>
+                <tr>
+                    <td>Gender :</td>
+                    <td>{{form.gender}}</td>
+                </tr>
+                <tr>
+                    <td>Address :</td>
+                    <td>{{form.address}}</td>
+                </tr>
+                <tr>
+                    <td>Pin Code :</td>
+                    <td>{{form.pincode}}</td>
+                </tr>
+                <tr>
+                    <td>Street :</td>
+                    <td>{{form.street}}</td>
+                </tr>
+                <tr>
+                    <td>12th Passing Year :</td>
+                    <td>{{form.year_passing}}</td>
+                </tr>
+                <tr>
+                    <td>12th Marks in Percentage without % :</td>
+                    <td>{{form.percentage}}</td>
+                </tr>
+                <tr>
+                    <td>choose Skill :</td>
+                    <td>{{form.skill}}</td>
+                </tr>
+                <tr>
+                    <td>Select Skills :</td>
+                    <td>{{form.skills}}</td>
+                </tr>
+                <tr>
+                    <td>Are you agree to submit ?{{form.agree}}</td>
+                </tr>
+                <tfoot>
+                    <th colspan="2" class="mb-3"><button type="submit" class="btn btn-primary">Register</button></th>
+                </tfoot>
+            </table>
+        </form>
+    </div>
+</body>
+
+</html>

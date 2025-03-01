@@ -1,0 +1,45 @@
+{% extends 'header_footer.html' %}
+
+{% block nav %}
+
+<div class="container">
+    <h1 style="text-align: center; color: red;">User Login</h1>
+    <hr>
+</div>
+<div class="container">
+<div class="messages">
+    <ul class="messages">
+        {% if messages %}
+        {% for message in messages %}
+        <li style="font-size: large; text-align: center;">
+            <div style="color: red; background: pink;">{{ message }}</div>
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</div>
+ <section class="about-section">
+        <form action="" method="POST" class="contact-form">
+            {% csrf_token %}
+            <!-- <div>
+                {{ form.as_p }}
+                <button type="submit">Submit</button>
+            </div> -->
+            <div style="height: auto; width: auto; margin: 10px 10px;">
+                <label for="">Username</label>
+                <input type="text" style="font-size: larger;" name="user" placeholder="Enter Username"><br>
+            </div>
+            <div style="height: auto; width: auto; margin: 10px 10px;">
+                <label for="">Password</label>
+                <input type="password" style="font-size: larger;" name="pas" placeholder="Enter Password"><br>
+            </div>
+            <button type="submit" >Login</button>
+        </form>
+    </section>
+    <div class="container" style=" text-align: center; font-size: larger;">
+        <h2 style="text-align: center;">If Username not found, Please Register</h2>
+        <a href="{% url 'register' %}">New User Register</a><br><br>
+        <a href="{% url 'forgetpas' %}">Forget password?</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emplyee</title>
+</head>
+<body>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li>
+            <div style="color: red; font-size: larger;">{{ message }}</div>
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <div style="margin: 0 30%; text-align: center; width: 500px; height: 500px; border: 2px solid red;">
+        <form method="POST">
+            <h2 style="text-align: center;">Emplyee Form</h2>
+
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="save btn btn-default">Save</button>
+        </form>
+    </div>
+    <h1 style="text-align: center;">Data from db-emplyee: <hr></h1> <br>
+    {% if obj %}
+    {% for k in obj %}
+    {{ k.emp_id }} <br>
+    {{ k.name }} <br>
+    {{ k.designation }} <br>
+    {{ k.contact }} <br>
+    <hr>
+    {% endfor %}
+    {% endif %}
+
+</body>
+</html>

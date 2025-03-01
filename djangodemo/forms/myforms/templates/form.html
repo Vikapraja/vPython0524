@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django Sample form</title>
+</head>
+<body>
+    <div style="border: 2px solid red;">
+        <h1>Form As Paragraph</h1>
+        <form action="" method="post">
+            {{form.as_p}}
+            <input type="submit" class="type">
+        </form>
+    </div>
+
+    <br>
+
+    <div style="border: 2px solid blue;">
+        <h1>Form As Table</h1>
+        <form action="" method="post">
+            {{form.as_table}}
+            <input type="submit" class="type">
+        </form>
+    </div>
+
+    <br>
+
+    <div style="border: 2px solid green;">
+        <h1>Form As Unordered-List</h1>
+        <form action="" method="post">
+            {{form.as_ul}}
+            <input type="submit" class="type">
+        </form>
+    </div>
+</body>
+</html>

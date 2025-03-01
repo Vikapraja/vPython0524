@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Login</title>
+</head>
+<body>
+    
+    <div class="container">
+        <h1 style="text-align: center; color: red;">User Login</h1><hr>
+    </div>
+    <div class="messages">
+        <ul class="messages">
+            {% if messages %}
+            {% for message in messages %}
+            <li>
+                <div class="alert alert-success">{{ message }}</div>
+            </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+    <div class="loginform" style="text-align: center; margin-inline: 30%; font-size: larger; width: 500px; height: 150px; border: 2px solid red;">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <!-- <div>
+                {{ form.as_p }}
+                <button type="submit">Submit</button>
+            </div> -->
+             <label for="">Username</label>
+             <input type="text" name="user" placeholder="Enter Username"><br>
+             <label for="">Password</label>
+             <input type="password" name="pas" placeholder="Enter Password"><br>
+             <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <div style=" text-align: center; margin: 50px;">
+        <a href="{% url 'register' %}">New User Register</a><br>
+        <a href="{% url 'forgetpas' %}">Forget password?</a>
+    </div>
+    
+</body>
+</html>

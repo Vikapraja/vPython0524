@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sendmail</title>
+</head>
+<body>
+    <h1 style="text-align: center;">Sendmail Contact Form</h1>
+    <form method="POST" action=""> {% csrf_token %}
+        <table border="2" align="center" rules="none" width="450px" height="500px">
+            <tr>
+                <th colspan="2">Contact Form</th>
+            </tr>
+            <tr>
+                <td>{{form.as_p}}</td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="send"></td>
+            </tr>
+        </table>
+    </form>
+    {% block msg %}
+
+    {% endblock %}
+</body>
+</html>
